@@ -1,0 +1,75 @@
+<html>
+<style type="text/css">
+    html{ overflow: hidden;}
+
+    #b-panorama_container {
+        position:relative;
+		height: 768px;
+		width: 2400px;
+		background: url("https://pp.vk.me/c631518/v631518061/d8ab/EJfOm7zmBTU.jpg");
+		background-position: -525;
+		background-repeat: no-repeat;
+		overflow: hidden;
+	}
+    #fixed-elem{
+         margin-top: 329px;
+         margin-left: 325.3px;
+    }
+    
+    #label2{
+         margin-top: 112px;
+         margin-left: 625px;
+    }
+</style>
+<body>
+	<div id="b-panorama_container" onmousedown="onMouseDown(event);" onmouseup="onMouseUp();" onmouseout="onMouseOut();"> 
+	    <div id="fixed-elem">
+	        <a ><img src="label.png" width="80"/></a>
+	        <a id="label2"><img src="https://pp.vk.me/c631422/v631422061/839d/Z0PGKBmyqs0.jpg" width="80"/></a>
+	   </div>
+   </div>
+	<script type="text/javascript">
+		var position = -525;
+		var iter = -1;
+		function onMouseDown(e) {
+			var el = document.getElementById("b-panorama_container"),
+				fixel = document.getElementById("fixed-elem");
+			if (iter == -1) {
+				var speed = 0.1;
+				iter = setInterval(function () {
+					if (e.clientX < 700) {
+						position += speed;
+					} else {
+						position -= speed;
+					}
+
+					if (position < -700) {
+						position = -700;
+					}
+					if (position > 0) {
+						position = 0;
+					}
+
+					speed += 0.1;
+					if (speed > 6) {
+						speed = 6;
+					}
+
+					el.style.backgroundPosition = position + "px";
+					fixel.style['margin-left']=position+850;
+
+				}, 10);
+			}
+		}
+		function onMouseUp() {
+			if (iter != -1) {
+				clearInterval(iter);
+				iter = -1;
+			}
+		}
+		function onMouseOut() {
+			onMouseUp();
+		}
+	</script>
+</body>
+</html>
